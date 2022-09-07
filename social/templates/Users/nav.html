@@ -1,0 +1,18 @@
+<nav class="navbar navbar-light" style="background-color: #000000;">
+    <a class="navbar-brand" href="/"><span style="color:white">Social</span></a>
+    <nav class="my-2 my-md-0 mr-md-3">
+       <a class="p-2 text-white" {% if user.is_authenticated %}>
+        User: {{ user.username }}.
+        <a class="p-2 text-white" href="{% url 'new_post' %}">New post</a>
+        <a class="p-2 text-white" href="{% url 'password_change' %}">Change password</a>
+        <a class="p-2 text-white" href="{% url 'logout' %}">Exit</a>
+        <a class="p-2 text-white" href="{% url 'contact' %}">Contact</a>
+        {% else %}
+        <a class="p-2 text-white" href="{% url 'login' %}">Enter</a> |
+        <a class="p-2 text-white" href="{% url 'signup' %}">Registration</a>
+        {% endif %}
+    </nav>
+</nav>
+
+
+<!--#e3f2fd;-->

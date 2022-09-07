@@ -1,0 +1,22 @@
+{% extends "posts/base.html" %}
+{% block title %}Сommunity posts|{{group}}{% endblock %}
+{% block header %}{{group}}{% endblock %}
+{% block content %}
+<h5>Quotes by Leo Tolstoy</h5>
+    <br>
+    {% for item in page %}
+    <h6>
+        Author: {{ item.author.get_full_name }}. Publication date: {{ item.pub_date|date:"d M Y" }}
+    </h6>
+    <p>{{ item.text|linebreaksbr }}</p>
+    {% load thumbnail %}
+        {% thumbnail item.image "960x300" crop="center" upscale=True as im %}
+            <img class="card-img" src="{{ im.url }}">
+        {% endthumbnail %}
+    {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+    {% if page.has_other_pages %}
+        {% include "posts/paginator.html" with items=page paginator=paginator %}
+        {% endif %}
+
+{% endblock %}
